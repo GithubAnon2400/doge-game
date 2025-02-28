@@ -48,9 +48,9 @@ function setup() {
   textSize(32);
   textAlign(CENTER, CENTER);
   
-  // Load both images
+  // Load both images with correct paths
   loadImage(
-    '/doge-game/assets/elon.png',
+    './assets/elon.png',  // Local path for testing
     img => {
       console.log('Successfully loaded Elon image');
       elonImage = img;
@@ -63,7 +63,7 @@ function setup() {
   );
   
   loadImage(
-    '/doge-game/assets/DOGE.png',
+    './assets/DOGE.png',  // Local path for testing
     img => {
       console.log('Successfully loaded DOGE image');
       dogeImage = img;
