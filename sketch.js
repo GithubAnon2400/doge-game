@@ -496,8 +496,8 @@ function drawFlashingOutcome() {
   let centerY = height/2;
   
   // Make the panel wider and taller to fit multi-line text
-  let panelWidth = 800;  // Increased from 600
-  let panelHeight = 200; // Increased from 140
+  let panelWidth = 800;
+  let panelHeight = 200;
   
   // Background panel for outcome
   fill(30, 35, 45, 230);
@@ -509,17 +509,27 @@ function drawFlashingOutcome() {
   // Draw outcome text
   noStroke();
   fill(255);
-  textSize(32);
   textAlign(CENTER, CENTER);
   
-  // Split text into lines and draw each line
-  let lines = outcome.label.split('\n');
-  let lineHeight = 40;
-  let startY = centerY - (lines.length - 1) * lineHeight/2;
+  // Split text into title and description
+  let [title, description] = outcome.label.split('\n');
   
-  lines.forEach((line, i) => {
-    text(line, centerX, startY + i * lineHeight);
-  });
+  // Draw title in larger size
+  textSize(28);  // Reduced from 32
+  text(title, centerX, centerY - 30);
+  
+  // Draw description in smaller size
+  textSize(22);  // Added smaller size for description
+  text(description || '', centerX, centerY + 20);
+  
+  // If it's a gain or multiplier, show the amount/multiplier
+  if (outcome.type === 'gain') {
+    textSize(24);
+    text(`+${formatMoney(outcome.amount)}`, centerX, centerY + 60);
+  } else if (outcome.type === 'double') {
+    textSize(24);
+    text(`${outcome.multiplier}X MULTIPLIER!`, centerX, centerY + 60);
+  }
   
   pop();
 }
