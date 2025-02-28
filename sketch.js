@@ -496,7 +496,7 @@ function drawFlashingOutcome() {
   let centerY = height/2;
   
   // Make panel narrower but still fit text
-  let panelWidth = 600;  // Reduced from 800
+  let panelWidth = 600;  // Keep this width for text
   let panelHeight = 200;
   
   // Background panel for outcome
@@ -513,24 +513,6 @@ function drawFlashingOutcome() {
   
   // Split text into title and description
   let [title, description] = outcome.label.split('\n');
-  
-  // Draw artwork based on outcome type
-  push();
-  textSize(48);  // Large emoji size
-  if (outcome.type === 'gain') {
-    // Draw money-related emojis for gains
-    text('💰', centerX - panelWidth/3, centerY);
-    text('📈', centerX + panelWidth/3, centerY);
-  } else if (outcome.type === 'double') {
-    // Draw multiplier-related emojis
-    text('⭐', centerX - panelWidth/3, centerY);
-    text('🚀', centerX + panelWidth/3, centerY);
-  } else if (outcome.type === 'rugpull') {
-    // Draw negative outcome emojis
-    text('💥', centerX - panelWidth/3, centerY);
-    text('⚠️', centerX + panelWidth/3, centerY);
-  }
-  pop();
   
   // Draw title in larger size
   textSize(28);
