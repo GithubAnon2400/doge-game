@@ -422,7 +422,19 @@ function draw() {
     // Add auto-start check after drawing everything
     if (state === 'idle' && !isEnteringDetails && !showingLeaderboard) {
       if (isFirstTurn) {
-        message = 'Press ENTER to start first audit';
+        // Draw start message in center of screen
+        push();
+        textAlign(CENTER, CENTER);
+        textSize(48);  // Larger text size
+        fill(255, 215, 0);  // Gold color
+        
+        // Add glow effect
+        drawingContext.shadowBlur = 20;
+        drawingContext.shadowColor = 'rgba(255, 215, 0, 0.5)';
+        
+        // Draw centered text
+        text('PRESS ENTER TO START GAME', width/2, height/2);
+        pop();
       } else {
         let currentTime = millis();
         if (currentTime - lastTurnEndTime >= autoStartDelay) {
