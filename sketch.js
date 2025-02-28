@@ -75,77 +75,60 @@ function setup() {
     }
   );
   
-  // Initialize outcomes array with adjusted amounts (in millions)
+  // Initialize outcomes array with new descriptions
   outcomes = [
     // Major Program Reforms ($2B-$10B)
-    { type: 'gain', amount: 6000, color: [98, 126, 234], label: 'FOUND MEDICARE FRAUD RING 🏥 - Busted "unicorn therapy" scam' },
-    { type: 'gain', amount: 3000, color: [247, 147, 26], label: 'FIXED SSA PAYMENT ERROR 👴 - Ended checks to 1812 ghosts' },
-    { type: 'gain', amount: 5000, color: [0, 200, 0], label: 'OPTIMIZED VA SPENDING 🎖️ - Cut dance classes for vets' },
-    { type: 'gain', amount: 9000, color: [0, 180, 0], label: 'CAUGHT DEFENSE OVERBILLING 🚀 - Nabbed $10M missile stickers' },
-    { type: 'gain', amount: 7000, color: [98, 126, 234], label: 'EXPOSED MEDICAID SCAM 🩺 - Caught "vibes checkups" billing' },
-    { type: 'gain', amount: 4000, color: [247, 147, 26], label: 'FIXED WELFARE DUPE 💰 - Stopped double-dipping twins' },
-    { type: 'gain', amount: 8000, color: [0, 200, 0], label: 'TRIMMED EPA BUDGET 🌳 - Axed tree-hugging robot fleet' },
-    { type: 'gain', amount: 9000, color: [0, 180, 0], label: 'NAILED IRS FRAUD 🔧 - Found fake "audit-proof" refunds' },
+    { type: 'gain', amount: random(2000, 10000), color: [98, 126, 234], 
+      label: 'FOUND MEDICARE FRAUD RING 🏥\nBusted unicorn scam, $6B saved.' },
+    { type: 'gain', amount: random(1500, 8000), color: [247, 147, 26], 
+      label: 'FIXED SSA PAYMENT ERROR 👴\nCut 1812 ghosts, $3B freed.' },
+    { type: 'gain', amount: random(2000, 7000), color: [0, 200, 0], label: 'OPTIMIZED VA SPENDING 🎖️' },
+    { type: 'gain', amount: random(3000, 9000), color: [0, 180, 0], label: 'CAUGHT DEFENSE OVERBILLING 🚀' },
+    
+    // Specific Waste Items (millions range: $200M-$2B)
+    { type: 'gain', amount: random(200, 2000), color: [0, 150, 220], label: 'CANCELED $1200 STAPLER 📎' },
+    { type: 'gain', amount: random(500, 2000), color: [0, 170, 200], label: 'FOUND LOST TANKS 🎯' },
+    { type: 'gain', amount: random(300, 1500), color: [131, 55, 236], label: 'FIXED $2M DOOR HINGE 🚪' },
+    { type: 'gain', amount: random(400, 2000), color: [50, 180, 50], label: 'RETURNED GOLDEN TOILET 🚽' },
+    
+    // IT and System Fixes (billions range: $1B-$5B)
+    { type: 'gain', amount: random(1000, 5000), color: [0, 180, 180], label: 'FIXED PAYMENT SYSTEM 💻' },
+    { type: 'gain', amount: random(1200, 4000), color: [0, 160, 180], label: 'UPGRADED ANCIENT COMPUTERS 🖥️' },
+    { type: 'gain', amount: random(800, 3000), color: [0, 140, 180], label: 'CONSOLIDATED DATABASES 📊' },
+    { type: 'gain', amount: random(1000, 4000), color: [0, 120, 180], label: 'AUTOMATED PAPERWORK 📄' },
+    
+    // Military Spending (billions range: $2B-$8B)
+    { type: 'gain', amount: random(2000, 8000), color: [100, 200, 0], label: 'FOUND MISSING F-35 PARTS 🛩️' },
+    { type: 'gain', amount: random(3000, 8000), color: [120, 200, 0], label: 'FIXED PENTAGON ACCOUNTING 📚' },
+    { type: 'gain', amount: random(2000, 6000), color: [140, 200, 0], label: 'OPTIMIZED SUPPLY CHAIN 📦' },
+    { type: 'gain', amount: random(1500, 5000), color: [160, 200, 0], label: 'CONSOLIDATED CONTRACTORS 🏗️' },
+    
+    // Foreign Aid (billions range: $3B-$10B)
+    { type: 'gain', amount: random(3000, 10000), color: [200, 100, 0], label: 'STOPPED FOREIGN SLUSH FUND 🌍' },
+    { type: 'gain', amount: random(3500, 8000), color: [200, 120, 0], label: 'CAUGHT GRANT FRAUD 🔍' },
+    { type: 'gain', amount: random(3000, 7000), label: 'ENDED GHOST PROJECTS 👻' },
+    { type: 'gain', amount: random(2500, 6000), color: [200, 160, 0], label: 'FIXED AID OVERSIGHT 🔎' },
 
-    // Specific Waste Items ($200M-$2B)
-    { type: 'gain', amount: 1200, color: [0, 150, 220], label: 'CANCELED $1200 STAPLER 📎 - Ditched diamond stapler' },
-    { type: 'gain', amount: 1000, color: [0, 170, 200], label: 'FOUND LOST TANKS 🎯 - Recovered glittery tanks' },
-    { type: 'gain', amount: 1900, color: [131, 55, 236], label: 'FIXED $2M DOOR HINGE 🚪 - Swapped gold for $10 fix' },
-    { type: 'gain', amount: 800, color: [50, 180, 50], label: 'RETURNED GOLDEN TOILET 🚽 - Melted jet throne' },
-    { type: 'gain', amount: 900, color: [0, 150, 220], label: 'SCRAPPED $500 PEN ✍️ - Traded platinum for Bics' },
-    { type: 'gain', amount: 1500, color: [0, 170, 200], label: 'FOUND LOST DRONES 🛸 - Dug up drones in swamp' },
-    { type: 'gain', amount: 700, color: [131, 55, 236], label: 'DITCHED $1M CHAIR 💺 - Swapped thrones for IKEA' },
-    { type: 'gain', amount: 2000, color: [50, 180, 50], label: 'SOLD PLATINUM CLOCK ⏰ - Auctioned timepiece on eBay' },
+    // Multipliers
+    { type: 'double', multiplier: 2, color: [255, 215, 0], 
+      label: 'DIRECTOR APPROVED 2X 🌟\nElon winks, 2X savings.' },
+    { type: 'double', multiplier: 3, color: [255, 215, 0], 
+      label: 'EFFICIENCY MASTER 3X 🚀\nTriple cuts, no slips.' },
+    { type: 'double', multiplier: 4, color: [255, 215, 0], label: 'REFORM CHAMPION 4X 🇺🇸' },
+    { type: 'double', multiplier: 5, color: [255, 215, 0], label: 'TAXPAYER HERO 5X 💪' },
+    { type: 'double', multiplier: 50, color: [255, 140, 0], label: 'MUCH WOW BUDGET WOOF 50X 🐕' },
 
-    // IT and System Fixes ($1B-$5B)
-    { type: 'gain', amount: 2000, color: [0, 180, 180], label: 'FIXED PAYMENT SYSTEM 💻 - Stopped Mars welfare' },
-    { type: 'gain', amount: 4000, color: [0, 160, 180], label: 'UPGRADED ANCIENT COMPUTERS 🖥️ - Ditched floppy relics' },
-    { type: 'gain', amount: 3000, color: [0, 140, 180], label: 'CONSOLIDATED DATABASES 📊 - Merged into "TaxDog"' },
-    { type: 'gain', amount: 1000, color: [0, 120, 180], label: 'AUTOMATED PAPERWORK 📄 - Fired pigeons, hired bots' },
-    { type: 'gain', amount: 5000, color: [0, 180, 180], label: 'PATCHED IRS GLITCH 🖨️ - Ended phantom refunds' },
-    { type: 'gain', amount: 2500, color: [0, 160, 180], label: 'REPLACED FAX MACHINES 📠 - Trashed 1980s relics' },
-    { type: 'gain', amount: 3000, color: [0, 140, 180], label: 'FIXED VOTING SOFTWARE 🗳️ - Stopped "ghost votes" bug' },
-    { type: 'gain', amount: 4000, color: [0, 120, 180], label: 'STREAMLINED PERMITS 📋 - Cut 90 days to 9 minutes' },
-
-    // Military Spending ($2B-$8B)
-    { type: 'gain', amount: 5000, color: [100, 200, 0], label: 'FOUND MISSING F-35 PARTS 🛩️ - Wings behind vending machine' },
-    { type: 'gain', amount: 6000, color: [120, 200, 0], label: 'FIXED PENTAGON ACCOUNTING 📚 - "$0" typo fixed' },
-    { type: 'gain', amount: 4000, color: [140, 200, 0], label: 'OPTIMIZED SUPPLY CHAIN 📦 - $500 hammers now $5' },
-    { type: 'gain', amount: 7000, color: [160, 200, 0], label: 'CONSOLIDATED CONTRACTORS 🏗️ - Dave builds tank solo' },
-    { type: 'gain', amount: 8000, color: [100, 200, 0], label: 'FOUND LOST SUBMARINE 🚢 - Found in Bermuda Triangle' },
-    { type: 'gain', amount: 6000, color: [120, 200, 0], label: 'CUT $3M BULLETS 🔫 - Swapped gold rounds for lead' },
-    { type: 'gain', amount: 4000, color: [140, 200, 0], label: 'FIXED NAVY FUEL BILL ⛽ - Caught gas pump overcharge' },
-    { type: 'gain', amount: 7000, color: [160, 200, 0], label: 'SCRAPPED $7B LASER 🧪 - Axed moth-zapping beam' },
-
-    // Foreign Aid ($3B-$10B)
-    { type: 'gain', amount: 8000, color: [200, 100, 0], label: 'STOPPED FOREIGN SLUSH FUND 🌍 - Axed dictator yacht' },
-    { type: 'gain', amount: 4000, color: [200, 120, 0], label: 'CAUGHT GRANT FRAUD 🔍 - Busted ghost bridges' },
-    { type: 'gain', amount: 6000, color: [200, 140, 0], label: 'ENDED GHOST PROJECTS 👻 - Killed phantom schools' },
-    { type: 'gain', amount: 3000, color: [200, 160, 0], label: 'FIXED AID OVERSIGHT 🔎 - Tracked cash from volcano lair' },
-    { type: 'gain', amount: 5000, color: [200, 100, 0], label: 'CUT $5B STATUE 🗽 - Nixed dictator gold portrait' },
-    { type: 'gain', amount: 7000, color: [200, 120, 0], label: 'FOUND LOST AID CASH 💸 - Found in Swiss hot tub' },
-    { type: 'gain', amount: 9000, color: [200, 140, 0], label: 'STOPPED FAKE CHARITY 🕊️ - "Peace fund" was private jet' },
-    { type: 'gain', amount: 10000, color: [200, 160, 0], label: 'AXED $10B ROAD 🛤️ - Ended highway to doghouse' },
-
-    // Multipliers with different values
-    { type: 'double', multiplier: 2, color: [255, 215, 0], label: 'DIRECTOR APPROVED 2X 🌟 - Elon winks' },
-    { type: 'double', multiplier: 3, color: [255, 215, 0], label: 'EFFICIENCY MASTER 3X 🚀 - Triple cuts' },
-    { type: 'double', multiplier: 4, color: [255, 215, 0], label: 'REFORM CHAMPION 4X 🇺🇸 - Eagles sing' },
-    { type: 'double', multiplier: 5, color: [255, 215, 0], label: 'TAXPAYER HERO 5X 💪 - Statue built' },
-    { type: 'double', multiplier: 50, color: [255, 140, 0], label: 'MUCH WOW BUDGET WOOF 50X 🐕 - Shiba barks' },
-    { type: 'double', multiplier: 6, color: [255, 215, 0], label: 'GAO BLESSING 6X ✅ - Auditors nod' },
-    { type: 'double', multiplier: 10, color: [255, 215, 0], label: 'DOGE WHISTLE 10X 🔔 - Whistleblower boost' },
-    { type: 'double', multiplier: 20, color: [255, 140, 0], label: 'MEME LORD 20X 😂 - Viral tweet' },
-
-    // Negative Outcomes (Game Over)
-    { type: 'rugpull', color: [255, 0, 0], label: 'BUREAUCRATS STAGE COUP 🕴️ - Locked out with 10,000-page memo' },
-    { type: 'rugpull', color: [255, 0, 0], label: 'SHREDDER STEVE GOES ROGUE 🧾 - Ate every reform plan' },
-    { type: 'rugpull', color: [255, 0, 0], label: 'UNION BOSS DETONATES ✊ - "Efficiency bomb" protest' },
-    { type: 'rugpull', color: [255, 0, 0], label: 'INSPECTOR SNOOZES FOREVER 😴 - Oversight naps through theft' },
-    { type: 'rugpull', color: [255, 0, 0], label: 'CONGRESS BUILDS MIME PALACE 💸 - Silent waste fortress' },
-    { type: 'rugpull', color: [255, 0, 0], label: 'LOBBYISTS UNLEASH SHRIMPAGEDDON 🦞 - Cocktail bribe tsunami' },
-    { type: 'rugpull', color: [255, 0, 0], label: 'FAX CULT RIOTS 📠 - Clerks burn servers for relics' },
-    { type: 'rugpull', color: [255, 0, 0], label: 'CAT HACKERS PWN "TAXDOG" 💾 - Feline virus wins' }
+    // Negative Outcomes
+    { type: 'rugpull', color: [255, 0, 0], 
+      label: 'BUREAUCRATS STAGE COUP 🕴️\nSuits bury DOGE in memos; game ends.' },
+    { type: 'rugpull', color: [255, 0, 0], 
+      label: 'SHREDDER STEVE GOES ROGUE 🧾\nSteve eats plans, $3B gone; game over.' },
+    { type: 'rugpull', color: [255, 0, 0], label: 'CONGRESS DEMANDS WASTE 💸' },
+    { type: 'rugpull', color: [255, 0, 0], label: 'LOBBYISTS BLOCK CUTS 🦞' },
+    { type: 'rugpull', color: [255, 0, 0], label: 'CAREER STAFF RESIST 😤' },
+    { type: 'rugpull', color: [255, 0, 0], label: 'COMMITTEE CHAIRS OBJECT ⛔' },
+    { type: 'rugpull', color: [255, 0, 0], label: 'UNIONS FILE LAWSUIT ⚖️' },
+    { type: 'rugpull', color: [255, 0, 0], label: 'STATUS QUO PREVAILS 🏛️' }
   ];
   
   shuffleOutcomes(); // Shuffle outcomes initially
@@ -512,9 +495,9 @@ function drawFlashingOutcome() {
   let centerX = width/2;
   let centerY = height/2;
   
-  // Make the panel wider and taller to fit all text
-  let panelWidth = 600;  // Increased from 500
-  let panelHeight = 140; // Increased from 120
+  // Make the panel wider and taller to fit multi-line text
+  let panelWidth = 800;  // Increased from 600
+  let panelHeight = 200; // Increased from 140
   
   // Background panel for outcome
   fill(30, 35, 45, 230);
@@ -524,24 +507,20 @@ function drawFlashingOutcome() {
   rect(centerX, centerY, panelWidth, panelHeight, 15);
   
   // Draw outcome text
-  textAlign(CENTER, CENTER);
   noStroke();
-  
-  // Outcome label
-  fill(outcome.color[0], outcome.color[1], outcome.color[2]);
-  textSize(36);
-  text(outcome.label, centerX, centerY - 25);
-  
-  // Amount/multiplier
+  fill(255);
   textSize(32);
-  if (outcome.type === 'gain') {
-    text(`+${formatMoney(outcome.amount)}`, centerX, centerY + 35);
-  } else if (outcome.type === 'double') {
-    text(`${outcome.multiplier}X MULTIPLIER!`, centerX, centerY + 35);
-  } else {
-    fill(255, 0, 0);
-    text('SAVINGS LOST!', centerX, centerY + 35);
-  }
+  textAlign(CENTER, CENTER);
+  
+  // Split text into lines and draw each line
+  let lines = outcome.label.split('\n');
+  let lineHeight = 40;
+  let startY = centerY - (lines.length - 1) * lineHeight/2;
+  
+  lines.forEach((line, i) => {
+    text(line, centerX, startY + i * lineHeight);
+  });
+  
   pop();
 }
 
@@ -695,8 +674,8 @@ function applyOutcome(i) {
     pendingMultiplier = outcome.multiplier;
     message = `MULTIPLIER READY! Next save will be ${outcome.multiplier}X! 🌟`;
     historyEntry.outcome = `${outcome.multiplier}X MULTIPLIER ACTIVATED - ` + outcome.label;
-    historyEntry.wallet = currentWallet;
-    turnHistory.push(historyEntry);
+  historyEntry.wallet = currentWallet;
+  turnHistory.push(historyEntry);
     state = 'idle';
     lastTurnEndTime = millis();  // Start countdown for next turn
     message = 'Next audit starting soon...';
