@@ -31,7 +31,9 @@ let leaderboardData = [];
 let showingLeaderboard = false;
 let highestWallet = 0;
 let elonImage = null;
-let isImageLoaded = false;
+let dogeImage = null;
+let isElonImageLoaded = false;
+let isDogeImageLoaded = false;
 let imageLoadError = false;
 let isShareButtonHovered = false;
 let autoStartDelay = 500;  // Changed from 800 to 500 milliseconds (0.5 seconds)
@@ -46,16 +48,27 @@ function setup() {
   textSize(32);
   textAlign(CENTER, CENTER);
   
-  // Load DOGE image instead of Elon
+  // Load both images
   loadImage(
-    '/doge-game/assets/DOGE.png',  // Updated path for DOGE image
-    // Success callback
+    '/doge-game/assets/elon.png',
+    img => {
+      console.log('Successfully loaded Elon image');
+      elonImage = img;
+      isElonImageLoaded = true;
+    },
+    () => {
+      console.error('Failed to load Elon image');
+      imageLoadError = true;
+    }
+  );
+  
+  loadImage(
+    '/doge-game/assets/DOGE.png',
     img => {
       console.log('Successfully loaded DOGE image');
-      elonImage = img;  // We'll keep the same variable name for simplicity
-      isImageLoaded = true;
+      dogeImage = img;
+      isDogeImageLoaded = true;
     },
-    // Error callback
     () => {
       console.error('Failed to load DOGE image');
       imageLoadError = true;
@@ -293,8 +306,8 @@ function draw() {
     particle.display();
   }
   
-  // Draw Elon with improved visibility and error handling
-  if (isImageLoaded && elonImage) {
+  // Draw Elon in lower left corner
+  if (isElonImageLoaded && elonImage) {
     push();
     imageMode(CORNER);
     let elonSize = 300;
@@ -304,12 +317,10 @@ function draw() {
     drawingContext.shadowBlur = 30;
     drawingContext.shadowColor = 'rgba(255, 215, 0, 0.5)';
     
-    // Draw image with full opacity
-    tint(255, 255); // Full opacity
+    // Draw Elon with full opacity
+    tint(255, 255);
     image(elonImage, padding, height - elonSize - padding, elonSize, elonSize);
     pop();
-  } else if (imageLoadError) {
-    console.log('Image failed to load - check path and file');
   }
   
   // Draw gradient overlay AFTER Elon
@@ -422,8 +433,7 @@ function draw() {
   }
   
   if (state === 'showingElon' && showingElon) {
-    // Draw centered large DOGE
-    if (isImageLoaded && elonImage) {
+    if (isDogeImageLoaded && dogeImage) {
       push();
       // Dark overlay
       fill(0, 0, 0, 150);
@@ -431,14 +441,14 @@ function draw() {
       
       // Center DOGE
       imageMode(CENTER);
-      let dogeSize = 400; // Keep same size
+      let dogeSize = 400;
       
       // Add glow effect
       drawingContext.shadowBlur = 40;
       drawingContext.shadowColor = 'rgba(255, 215, 0, 0.7)';
       
       // Draw DOGE centered
-      image(elonImage, width/2, height/2, dogeSize, dogeSize);
+      image(dogeImage, width/2, height/2, dogeSize, dogeSize);
       pop();
     }
     
