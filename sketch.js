@@ -48,9 +48,9 @@ function setup() {
   textSize(32);
   textAlign(CENTER, CENTER);
   
-  // Load both images with correct paths
+  // Load both images with correct GitHub paths
   loadImage(
-    './assets/elon.png',  // Local path for testing
+    'https://raw.githubusercontent.com/githubanon2400/doge-game/main/assets/elon.png',
     img => {
       console.log('Successfully loaded Elon image');
       elonImage = img;
@@ -63,7 +63,7 @@ function setup() {
   );
   
   loadImage(
-    './assets/DOGE.png',  // Local path for testing
+    './assets/DOGE.png',  // Keep local path for DOGE
     img => {
       console.log('Successfully loaded DOGE image');
       dogeImage = img;
