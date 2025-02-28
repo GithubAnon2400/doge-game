@@ -1068,7 +1068,7 @@ function shareOnX() {
   const score = formatMoney(highestWallet);
   const text = `I just saved ${score} taxpayer dollars in DOGE: THE GAME! Can you do better?`;
   // Replace this URL with your actual TinyURL
-  const url = 'https://githubanon2400.github.io/doge-game/';  
+  const url = 'https://tinyurl.com/doge-game1';  
   const shareURL = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
   window.open(shareURL, '_blank');
 }
